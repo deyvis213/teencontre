@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teencontre | Conectando Talento en RD</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --brand-blue: #0f172a;
+            --brand-accent: #2563eb;
+            --client-color: #6366f1;
+            --white: #ffffff;
+            --bg-gray: #f1f5f9;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            --radius: 16px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-gray);
+            color: var(--brand-blue);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* FONDO PROFESIONAL */
+        .page-background {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: linear-gradient(rgba(241, 245, 249, 0.95), rgba(241, 245, 249, 0.95)),
+                        url('https://www.transparenttextures.com/patterns/cubes.png');
+        }
+
+        .photo-mosaic {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            opacity: 0.07;
+            filter: grayscale(100%);
+        }
+
+        .photo-mosaic img { width: 100%; height: 150px; object-fit: cover; }
+
+        header {
+            background: var(--brand-blue);
+            color: var(--white);
+            padding: 50px 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 { font-size: 2.5rem; font-weight: 800; }
+
+        .main-layout {
+            max-width: 1400px;
+            margin: -40px auto 60px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .results-section { grid-column: span 2; }
+
+        @media (max-width: 950px) {
+            .main-layout { grid-template-columns: 1fr; }
+            .results-section { grid-column: span 1; }
+        }
+
+        /* ESTILO UNIFICADO DE TARJETAS */
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover { transform: translateY(-5px); }
+
+        .card-header {
+            border-bottom: 2px solid var(--bg-gray);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+        }
+
+        h2 { font-size: 1.3rem; color: var(--brand-blue); display: flex; align-items: center; gap: 10px; }
+        
+        .badge {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        /* FORMULARIOS */
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .full { grid-column: span 2; }
+
+        label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 5px; color: #64748b; }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: inherit;
+            background: #f8fafc;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .btn-client { background: var(--client-color); color: white; }
+        .btn-provider { background: var(--brand-accent); color: white; }
+
+        /* MONITOR DE RESULTADOS (DISEÑO UNIFICADO) */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .result-item {
+            background: #fdfdfd;
+            border: 1px solid #eef2ff;
+            border-left: 5px solid var(--brand-accent);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        .result-item h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--brand-blue); }
+        .result-detail { font-size: 0.85rem; color: #64748b; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+        .contact-area {
+            margin-top: 12px; padding-top: 12px; border-top: 1px solid #f1f5f9;
+            display: flex; flex-wrap: wrap; gap: 10px; font-weight: 600; color: var(--brand-accent);
+        }
+    </style>
+</head>
+<body>
+
+<div class="photo-mosaic" id="mosaic"></div>
+<div class="page-background"></div>
+
+<header>
+    <h1>Teencontre</h1>
+    <p>Conexión Profesional Inmediata en República Dominicana</p>
+</header>
+
+<div class="main-layout">
+    <section class="card">
+        <div class="card-header">
+            <span class="badge" style="background: #eef2ff; color: var(--client-color);">Módulo Cliente</span>
+            <h2>🔎 Buscar un Servicio</h2>
+        </div>
+        <div class="form-grid">
+            <div>
+                <label>Provincia</label>
+                <select id="cli-provincia"></select>
+            </div>
+            <div>
+                <label>Servicio</label>
+                <select id="cli-area"></select>
+            </div>
+            <div class="full">
+                <label>Dirección o Sector Específico</label>
+                <input type="text" id="cli-direccion" placeholder="Ej: Av. Winston Churchill / Ensanche Naco">
+            </div>
+            <div class="full">
+                <button class="btn-client" onclick="app.filtrar()">Buscar Solicitud</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="card">
+        <div class="card-header">
+            <span class="badge" style="background: #eff6ff; color: var(--brand-accent);">Módulo Proveedor</span>
+            <h2>🛠 Ofrecer mi Servicio</h2>
+        </div>
+        <div class="form-grid">
+            <div class="full">
+                <label>Nombre del Profesional / Negocio</label>
+                <input type="text" id="pro-nombre" placeholder="Nombre completo">
+            </div>
+            <div>
+                <label>Provincia</label>
+                <select id="pro-provincia"></select>
+            </div>
+            <div>
+                <label>Área</label>
+                <select id="pro-area"></select>
+            </div>
+            <div class="full">
+                <label>Dirección / Sector de Trabajo</label>
+                <input type="text" id="pro-direccion" placeholder="Ej: Calle 4ta, Los Mina / Herrera">
+            </div>
+            <div>
+                <label>WhatsApp / Tel 1</label>
+                <input type="tel" id="pro-tel1" placeholder="809-000-0000">
+            </div>
+            <div>
+                <label>Teléfono 2</label>
+                <input type="tel" id="pro-tel2" placeholder="829-000-0000">
+            </div>
+            <div class="full">
+                <button class="btn-provider" onclick="app.grabar()">Grabar y Publicar</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="card results-section">
+        <div class="card-header">
+            <span class="badge" style="background: #f8fafc; color: var(--brand-blue);">Monitor de Red</span>
+            <h2>📊 Servicio Localizado</h2>
+        </div>
+        <div id="grid-resultados" class="results-grid">
+            </div>
+    </section>
+</div>
+
+<script>
+    const PROVINCIAS = ["Azua", "Bahoruco", "Barahona", "Dajabón", "Distrito Nacional", "Duarte", "Elías Piña", "El Seibo", "Espaillat", "Hato Mayor", "Hermanas Mirabal", "Independencia", "La Altagracia", "La Romana", "La Vega", "María Trinidad Sánchez", "Monseñor Nouel", "Monte Cristi", "Monte Plata", "Pedernales", "Peravia", "Puerto Plata", "Samaná", "Sánchez Ramírez", "San Cristóbal", "San José de Ocoa", "San Juan", "San Pedro de Macorís", "Santiago", "Santiago Rodríguez", "Santo Domingo", "Valverde"];
+    
+    const AREAS = ["Abogado", "Albañil", "Arquitecto", "Barbero", "Carpintero", "Chef", "Contador", "Electricista", "Enfermería", "Fotógrafo", "Fumigador", "Jardinero", "Limpieza", "Mecánico", "Mensajería", "Músico", "Niñera", "Peluquero", "Pintor", "Plomero", "Programador", "Psicólogo", "Reparación Celulares", "Soporte Técnico", "Técnico AC"];
+
+    const app = {
+        proveedores: [],
+
+        init() {
+            this.llenarSelects();
+            this.crearMosaico();
+            this.cargarDemo();
+            this.renderizar(this.proveedores);
+        },
+
+        llenarSelects() {
+            const selsP = [document.getElementById('cli-provincia'), document.getElementById('pro-provincia')];
+            const selsA = [document.getElementById('cli-area'), document.getElementById('pro-area')];
+            PROVINCIAS.forEach(p => selsP.forEach(s => s.add(new Option(p, p))));
+            AREAS.sort().forEach(a => selsA.forEach(s => s.add(new Option(a, a))));
+        },
+
+        crearMosaico() {
+            const m = document.getElementById('mosaic');
+            const imgIds = ['photo-1521791136064-7986c29597bb', 'photo-1590650516494-2c8e4a445552', 'photo-1581578731522-745505146317'];
+            for(let i=0; i<30; i++){
+                const img = document.createElement('img');
+                img.src = `https://images.unsplash.com/${imgIds[i%3]}?auto=format&fit=crop&q=40&w=200`;
+                m.appendChild(img);
+            }
+        },
+
+        grabar() {
+            const nombre = document.getElementById('pro-nombre').value;
+            const tel = document.getElementById('pro-tel1').value;
+            const dir = document.getElementById('pro-direccion').value;
+
+            if(!nombre || !tel || !dir) return alert("Complete los campos: Nombre, Dirección y Teléfono.");
+
+            const nuevo = {
+                nombre,
+                provincia: document.getElementById('pro-provincia').value,
+                area: document.getElementById('pro-area').value,
+                direccion: dir,
+                tel1: tel,
+                tel2: document.getElementById('pro-tel2').value
+            };
+
+            this.proveedores.unshift(nuevo);
+            alert("Información grabada correctamente.");
+            this.renderizar(this.proveedores);
+        },
+
+        filtrar() {
+            const prov = document.getElementById('cli-provincia').value;
+            const area = document.getElementById('cli-area').value;
+            const dirBusqueda = document.getElementById('cli-direccion').value.toLowerCase();
+
+            const filtrados = this.proveedores.filter(p => 
+                p.provincia === prov && 
+                p.area === area && 
+                (dirBusqueda === "" || p.direccion.toLowerCase().includes(dirBusqueda))
+            );
+            this.renderizar(filtrados);
+        },
+
+        renderizar(lista) {
+            const contenedor = document.getElementById('grid-resultados');
+            contenedor.innerHTML = lista.length ? '' : '<p style="grid-column:1/-1; text-align:center; padding:40px; opacity:0.5;">No hay registros grabados bajo estos criterios.</p>';
+
+            lista.forEach(p => {
+                const item = document.createElement('div');
+                item.className = 'result-item';
+                item.innerHTML = `
+                    <h3>${p.nombre}</h3>
+                    <div class="result-detail"><strong>🛠 Especialidad:</strong> ${p.area}</div>
+                    <div class="result-detail"><strong>📍 Ubicación:</strong> ${p.provincia}</div>
+                    <div class="result-detail"><strong>🏠 Dirección:</strong> ${p.direccion}</div>
+                    <div class="contact-area">
+                        <span>📞 ${p.tel1}</span>
+                        ${p.tel2 ? `<span>📱 ${p.tel2}</span>` : ''}
+                    </div>
+                `;
+                contenedor.appendChild(item);
+            });
+        },
+
+        cargarDemo() {
+            this.proveedores = [
+                { nombre: "Ramón 'El Mestro' Plomería", provincia: "Santo Domingo", area: "Plomero", direccion: "C/ Primera #12, Los Alcarrizos", tel1: "809-555-1212", tel2: "829-111-2222" },
+                { nombre: "Ing. Carlos Soporte RD", provincia: "Santiago", area: "Soporte Técnico", direccion: "Residencial Las Colinas, Edif A", tel1: "809-555-4545", tel2: "" },
+                { nombre: "Doña Altagracia - Salón & Estética", provincia: "Distrito Nacional", area: "Peluquero", direccion: "Av. Independencia km 8.5", tel1: "809-555-6767", tel2: "849-000-1111" },
+                { nombre: "Mantenimiento AC El Primo", provincia: "La Altagracia", area: "Técnico AC", direccion: "Bávaro, Sector El Cortecito", tel1: "829-333-4444", tel2: "" }
+            ];
+        }
+    };
+
+    window.onload = () => app.init();
+</script>
+
+</body>
+</html>
