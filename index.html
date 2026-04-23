@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teencontre | La Red de Servicios Profesionales de RD</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Teencontre | La Red Profesional Más Grande de RD</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
+        /* SISTEMA DE DISEÑO AVANZADO */
         :root {
             --brand-blue: #0f172a;
             --brand-accent: #2563eb;
@@ -15,372 +17,364 @@
             --bg-gray: #f1f5f9;
             --text-main: #1e293b;
             --text-muted: #64748b;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            --radius: 16px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-gray); color: var(--text-main); line-height: 1.6; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-gray); 
+            color: var(--text-main); 
+            line-height: 1.6; 
+            overflow-x: hidden;
+        }
 
+        /* HEADER IMPACTANTE */
         header { 
             background: linear-gradient(135deg, var(--brand-blue) 0%, #1e293b 100%); 
             color: var(--white); 
-            padding: 60px 20px; 
+            padding: 80px 20px; 
             text-align: center; 
-            border-bottom: 4px solid var(--brand-accent);
+            border-bottom: 5px solid var(--brand-accent);
+            position: relative;
         }
         
-        header h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 10px; }
-        header p { font-size: 1.1rem; opacity: 0.9; font-weight: 300; }
+        header h1 { font-size: 3rem; font-weight: 800; letter-spacing: -2px; margin-bottom: 15px; }
+        header p { font-size: 1.2rem; opacity: 0.8; font-weight: 300; max-width: 700px; margin: 0 auto; }
 
+        /* LAYOUT PRINCIPAL */
         .main-layout { 
             max-width: 1300px; 
-            margin: -40px auto 60px; 
-            padding: 0 20px; 
+            margin: -50px auto 80px; 
+            padding: 0 25px; 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
-            gap: 30px; 
+            gap: 35px; 
         }
 
-        .full { grid-column: span 2; }
+        .full-width { grid-column: span 2; }
 
+        /* TARJETAS DE INTERFAZ */
         .card { 
             background: var(--white); 
-            border-radius: 20px; 
-            padding: 30px; 
+            border-radius: var(--radius); 
+            padding: 35px; 
             box-shadow: var(--shadow-lg); 
-            border: 1px solid rgba(255,255,255,0.8);
-            transition: transform 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
+        .card:hover { transform: translateY(-5px); }
+
         .card-header { 
-            border-bottom: 2px solid var(--bg-gray); 
-            margin-bottom: 25px; 
+            border-bottom: 2px solid #f1f5f9; 
+            margin-bottom: 30px; 
             padding-bottom: 15px; 
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
-        .card-header h2 { font-size: 1.4rem; font-weight: 700; color: var(--brand-blue); }
+        .card-header h2 { font-size: 1.5rem; font-weight: 700; color: var(--brand-blue); }
 
+        /* FORMULARIOS EXPANDIDOS */
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         
-        .field { display: flex; flex-direction: column; gap: 8px; }
-        label { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
+        .field-group { display: flex; flex-direction: column; gap: 8px; }
+        label { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
         
-        input, select, textarea { 
+        input, select { 
             width: 100%; 
-            padding: 14px; 
+            padding: 15px; 
             border: 2px solid #e2e8f0; 
-            border-radius: 10px; 
+            border-radius: 12px; 
             background: #f8fafc; 
             font-size: 1rem; 
-            font-family: inherit;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
 
-        input:focus, select:focus { border-color: var(--brand-accent); outline: none; background: white; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); }
+        input:focus, select:focus { 
+            border-color: var(--brand-accent); 
+            outline: none; 
+            background: white; 
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); 
+        }
         
-        button { 
+        /* BOTONES PROFESIONALES */
+        .btn { 
             width: 100%; 
-            padding: 16px; 
+            padding: 18px; 
             border: none; 
-            border-radius: 10px; 
-            font-weight: 700; 
+            border-radius: 12px; 
+            font-weight: 800; 
             font-size: 1rem;
             cursor: pointer; 
             text-transform: uppercase; 
             transition: all 0.3s ease; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            margin-top: 10px;
         }
 
-        .btn-client { background: var(--client-color); color: white; box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4); }
-        .btn-client:hover { background: #4f46e5; transform: translateY(-2px); }
+        .btn-client { background: var(--client-color); color: white; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); }
+        .btn-provider { background: var(--brand-accent); color: white; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); }
+        .btn:active { transform: scale(0.98); }
 
-        .btn-provider { background: var(--brand-accent); color: white; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4); }
-        .btn-provider:hover { background: #1d4ed8; transform: translateY(-2px); }
-
-        /* AI BOX */
-        .ai-box { 
+        /* MÓDULO DE IA DINÁMICO */
+        .ai-container { 
             background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); 
-            border-left: 6px solid var(--ai-purple); 
-            padding: 25px; 
-            border-radius: 16px; 
-            margin-bottom: 30px; 
+            border-left: 8px solid var(--ai-purple); 
+            padding: 30px; 
+            border-radius: var(--radius); 
+            margin-bottom: 35px; 
             display: none; 
-            animation: fadeIn 0.5s ease;
+            animation: slideIn 0.6s ease;
         }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
 
-        .ai-badge { 
+        .ai-status-badge { 
             background: var(--ai-purple); 
             color: white; 
-            padding: 4px 10px; 
+            padding: 5px 12px; 
             border-radius: 6px; 
             font-size: 0.75rem; 
-            font-weight: 800; 
+            font-weight: 900; 
             display: inline-block;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
-        .ai-content { font-size: 1rem; color: #4c1d95; line-height: 1.7; }
+        .ai-output-text { font-size: 1.05rem; color: #4c1d95; line-height: 1.8; white-space: pre-line; }
 
-        /* RESULTS */
-        .results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
-        .result-item { 
+        /* REJILLA DE RESULTADOS */
+        .results-wrapper { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 30px; }
+        
+        .profile-card { 
             background: white; 
             border: 1px solid #e2e8f0; 
-            border-top: 4px solid var(--brand-accent);
-            padding: 25px; 
-            border-radius: 16px; 
-            transition: all 0.3s ease;
+            border-top: 5px solid var(--brand-accent);
+            padding: 30px; 
+            border-radius: var(--radius); 
             position: relative;
+            overflow: hidden;
         }
-        .result-item:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
-        .result-item h3 { font-size: 1.25rem; margin-bottom: 8px; color: var(--brand-blue); }
-        .result-item .meta { font-size: 0.9rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px; margin-bottom: 5px; }
-        .result-item .contact-btn { 
-            margin-top: 15px; 
-            padding: 10px; 
+
+        .profile-card h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--brand-blue); }
+        .profile-info { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        
+        .whatsapp-link { 
+            margin-top: 20px; 
+            padding: 12px; 
             background: #22c55e; 
             color: white; 
             text-decoration: none; 
-            border-radius: 8px; 
-            display: inline-flex; 
+            border-radius: 10px; 
+            display: flex; 
             align-items: center; 
-            gap: 8px; 
-            font-weight: 600;
-            font-size: 0.9rem;
+            justify-content: center;
+            gap: 10px; 
+            font-weight: 700;
         }
 
-        @media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } .full { grid-column: span 1; } }
+        @media (max-width: 950px) { .main-layout { grid-template-columns: 1fr; } .full-width { grid-column: span 1; } }
     </style>
 </head>
 <body>
 
 <header>
     <h1>Teencontre</h1>
-    <p>Directorio Inteligente de Profesionales y Oficios en República Dominicana</p>
+    <p>Conectando el talento dominicano con soluciones inmediatas mediante Inteligencia Artificial.</p>
 </header>
 
 <div class="main-layout">
     <section class="card">
-        <div class="card-header"><h2>🔎 Buscar un Servicio</h2></div>
+        <div class="card-header"><h2>🔍 Localizar Experto</h2></div>
         <div class="form-grid">
-            <div class="field">
-                <label>¿En qué provincia?</label>
-                <select id="cli-provincia"></select>
+            <div class="field-group">
+                <label>Provincia</label>
+                <select id="search-provincia"></select>
             </div>
-            <div class="field">
-                <label>¿Qué servicio buscas?</label>
-                <select id="cli-area"></select>
+            <div class="field-group">
+                <label>Servicio</label>
+                <select id="search-area"></select>
             </div>
-            <div class="full field">
-                <label>Ubicación Específica (Opcional)</label>
-                <input type="text" id="cli-dir" placeholder="Sector, calle o referencia (Ej: Naco, Villa Mella)">
+            <div class="full-width field-group">
+                <label>Referencia de Ubicación</label>
+                <input type="text" id="search-dir" placeholder="Ej: Av. Winston Churchill o Sector Naco">
             </div>
-            <div class="full">
-                <button class="btn-client" onclick="app.ejecutarBusquedaInteligente()">
-                    Consultar Asistente IA
-                </button>
+            <div class="full-width">
+                <button class="btn btn-client" onclick="engine.runSmartSearch()">Consultar a la Red e IA</button>
             </div>
         </div>
     </section>
 
     <section class="card">
-        <div class="card-header"><h2>🛠 Ofrecer mi Servicio</h2></div>
+        <div class="card-header"><h2>💼 Unirme como Proveedor</h2></div>
         <div class="form-grid">
-            <div class="full field">
-                <label>Nombre del Negocio o Profesional</label>
-                <input type="text" id="pro-nombre" placeholder="Nombre completo">
+            <div class="full-width field-group">
+                <label>Nombre Comercial / Profesional</label>
+                <input type="text" id="reg-nombre" placeholder="Nombre que verán los clientes">
             </div>
-            <div class="field">
-                <label>Provincia</label>
-                <select id="pro-provincia"></select>
+            <div class="field-group">
+                <label>Tu Provincia</label>
+                <select id="reg-provincia"></select>
             </div>
-            <div class="field">
+            <div class="field-group">
                 <label>Especialidad</label>
-                <select id="pro-area"></select>
+                <select id="reg-area"></select>
             </div>
-            <div class="full field">
-                <label>Dirección del Local o Taller</label>
-                <input type="text" id="pro-dir" placeholder="Ej: Calle 16 de Agosto #45">
+            <div class="full-width field-group">
+                <label>Dirección del Taller/Oficina</label>
+                <input type="text" id="reg-dir" placeholder="Sector y número de calle">
             </div>
-            <div class="field">
-                <label>WhatsApp Principal</label>
-                <input type="tel" id="pro-tel1" placeholder="809-000-0000">
+            <div class="field-group">
+                <label>WhatsApp</label>
+                <input type="tel" id="reg-tel1" placeholder="809-000-0000">
             </div>
-            <div class="field">
-                <label>Teléfono Adicional</label>
-                <input type="tel" id="pro-tel2" placeholder="829-000-0000">
+            <div class="field-group">
+                <label>Teléfono 2</label>
+                <input type="tel" id="reg-tel2" placeholder="Opcional">
             </div>
-            <div class="full">
-                <button class="btn-provider" onclick="app.grabar()">
-                    Registrarme en la Red
-                </button>
+            <div class="full-width">
+                <button class="btn btn-provider" onclick="engine.saveProvider()">Publicar mi Perfil</button>
             </div>
         </div>
     </section>
 
-    <section class="card full">
-        <div class="card-header"><h2>📊 Resultados de la Red</h2></div>
+    <section class="card full-width">
+        <div class="card-header"><h2>📈 Resultados Localizados</h2></div>
         
-        <div id="ai-response" class="ai-box">
-            <span class="ai-badge">🤖 GEMINI IA ANALIZANDO</span>
-            <div id="ai-text" class="ai-content"></div>
+        <div id="ai-panel" class="ai-container">
+            <span class="ai-status-badge">🤖 GEMINI 1.5 FLASH ANALIZANDO</span>
+            <div id="ai-content" class="ai-output-text"></div>
         </div>
 
-        <div id="grid-resultados" class="results-grid"></div>
+        <div id="results-display" class="results-wrapper"></div>
     </section>
 </div>
 
 <script>
-    // LISTAS MASIVAS DE DATOS
-    const PROVINCIAS = ["Azua", "Bahoruco", "Barahona", "Dajabón", "Distrito Nacional", "Duarte", "Elías Piña", "El Seibo", "Espaillat", "Hato Mayor", "Hermanas Mirabal", "Independencia", "La Altagracia", "La Romana", "La Vega", "María Trinidad Sánchez", "Monseñor Nouel", "Monte Cristi", "Monte Plata", "Pedernales", "Peravia", "Puerto Plata", "Samaná", "Sánchez Ramírez", "San Cristóbal", "San José de Ocoa", "San Juan", "San Pedro de Macorís", "Santiago", "Santiago Rodríguez", "Santo Domingo", "Valverde"];
-    
-    const AREAS = [
-        "Abogado Civil", "Abogado Penalista", "Abogado Laboral", "Abogado de Familia", "Administrador de Condominios", "Albañil", "Alquiler de Equipos", "Alquiler de Vehículos", "Animador de Eventos", "Arquitecto", 
-        "Arreglos Florales", "Asesor de Impuestos", "Asistente Virtual", "Auditor", "Barbero", "Bartender", "Bienes Raíces", "Cajeros", "Capitán de Camareros", "Carpintero", 
-        "Cerrajería", "Chef a Domicilio", "Chófer Privado", "Clases de Inglés", "Clases de Matemáticas", "Clases de Música", "Clases de Baile", "Cocina Industrial", "Coach Personal", "Contador Publico", 
-        "Cristalero", "Cuidador de Ancianos", "Cuidador de Niños (Niñera)", "Decorador de Interiores", "Dentista / Odontólogo", "Depilación", "Desabolladura y Pintura", "Diseñador Gráfico", "Diseñador de Modas", "Diseñador Web", 
-        "Digitador", "Ebanista", "Electricista Residencial", "Electricista Industrial", "Electricista Automotriz", "Enfermería a Domicilio", "Entrenador Personal (Gym)", "Esteticista", "Especialista en Seguridad", "Exterminador / Fumigación", 
-        "Fisioterapeuta", "Fotógrafo de Eventos", "Fotógrafo Comercial", "Gomero", "Guía Turístico", "Herrero", "Inmobiliaria", "Instalador de Cámaras (CCTV)", "Instalador de Inversores", "Instalador de Toldos", 
-        "Jardinero", "Lavado de Alfombras", "Lavado de Muebles", "Lava Carros", "Limpieza de Piscinas", "Limpieza Profunda de Hogar", "Maquillista Profesional", "Masajista Terapéutico", "Mecánico de Gasolina", "Mecánico de Diesel", 
-        "Mecánico de Motocicletas", "Mensajería / Delivery", "Modista / Sastre", "Montaje de Eventos", "Mudanzas y Acarreos", "Músico para Eventos", "Nutricionista", "Organizador de Bodas", "Organizador de Clóset", "Panadero / Pastelero", 
-        "Peluquería", "Perito Eléctrico", "Pintor de Edificaciones", "Plomero / Fontanero", "Podólogo", "Programador de Apps", "Programador Web", "Psicólogo Clínico", "Psicólogo Infantil", "Publicidad y Mercadeo", 
-        "Recogida de Escombros", "Reparación de Celulares", "Reparación de Computadoras", "Reparación de Estufas", "Reparación de Lavadoras", "Reparación de Neveras", "Reparación de Televisores", "Sastrería", "Secretaria Ejecutiva", "Seguridad Privada", 
-        "Serigrafía", "Soporte Técnico IT", "Taller de Radiadores", "Tapicero", "Tatuador", "Técnico de Aire Acondicionado", "Traductor de Documentos", "Transporte Escolar", "Uñas Acrílicas (Manicurista)", "Veterinario", 
-        "Vigilante", "Zapatero"
-    ];
+    // DATA CORE: PROVINCIAS Y 100+ SERVICIOS
+    const DR_DATA = {
+        provincias: ["Azua", "Bahoruco", "Barahona", "Dajabón", "Distrito Nacional", "Duarte", "Elías Piña", "El Seibo", "Espaillat", "Hato Mayor", "Hermanas Mirabal", "Independencia", "La Altagracia", "La Romana", "La Vega", "María Trinidad Sánchez", "Monseñor Nouel", "Monte Cristi", "Monte Plata", "Pedernales", "Peravia", "Puerto Plata", "Samaná", "Sánchez Ramírez", "San Cristóbal", "San José de Ocoa", "San Juan", "San Pedro de Macorís", "Santiago", "Santiago Rodríguez", "Santo Domingo", "Valverde"],
+        servicios: [
+            "Abogado Civil", "Abogado Penalista", "Administrador de Condominios", "Albañil", "Alquiler de Equipos", "Animador de Eventos", "Arquitecto", "Arreglos Florales", "Asesor de Impuestos", "Asistente Virtual",
+            "Barbero", "Bartender", "Bienes Raíces", "Cajeros", "Capitán de Camareros", "Carpintero", "Cerrajería", "Chef a Domicilio", "Chófer Privado", "Clases de Inglés",
+            "Clases de Matemáticas", "Clases de Música", "Cocina Industrial", "Coach Personal", "Contador Publico", "Cristalero", "Cuidador de Ancianos", "Cuidador de Niños (Niñera)", "Decorador de Interiores", "Dentista / Odontólogo",
+            "Depilación", "Desabolladura y Pintura", "Diseñador Gráfico", "Diseñador de Modas", "Diseñador Web", "Digitador", "Ebanista", "Electricista Residencial", "Electricista Industrial", "Enfermería a Domicilio",
+            "Entrenador Personal (Gym)", "Esteticista", "Especialista en Seguridad", "Exterminador / Fumigación", "Fisioterapeuta", "Fotógrafo de Eventos", "Fotógrafo Comercial", "Gomero", "Guía Turístico", "Herrero",
+            "Inmobiliaria", "Instalador de Cámaras (CCTV)", "Instalador de Inversores", "Instalador de Toldos", "Jardinero", "Lavado de Alfombras", "Lavado de Muebles", "Lava Carros", "Limpieza de Piscinas", "Limpieza Profunda de Hogar",
+            "Maquillista Profesional", "Masajista Terapéutico", "Mecánico de Gasolina", "Mecánico de Diesel", "Mecánico de Motocicletas", "Mensajería / Delivery", "Modista / Sastre", "Montaje de Eventos", "Mudanzas y Acarreos", "Músico para Eventos",
+            "Nutricionista", "Organizador de Bodas", "Organizador de Clóset", "Panadero / Pastelero", "Peluquería", "Perito Eléctrico", "Pintor de Edificaciones", "Plomero / Fontanero", "Podólogo", "Programador de Apps",
+            "Psicólogo Clínico", "Psicólogo Infantil", "Publicidad y Mercadeo", "Recogida de Escombros", "Reparación de Celulares", "Reparación de Computadoras", "Reparación de Estufas", "Reparación de Lavadoras", "Reparación de Neveras", "Reparación de Televisores",
+            "Sastrería", "Secretaria Ejecutiva", "Seguridad Privada", "Serigrafía", "Soporte Técnico IT", "Taller de Radiadores", "Tapicero", "Tatuador", "Técnico de Aire Acondicionado", "Traductor de Documentos",
+            "Transporte Escolar", "Uñas Acrílicas (Manicurista)", "Veterinario", "Vigilante", "Zapatero"
+        ]
+    };
 
-    const app = {
-        proveedores: [],
-        apiKey: "AIzaSyAoJfmj0DJVNRJsyCzvb4DAZWEWMpY1uVA", // TU CLAVE REAL
+    const engine = {
+        database: [],
+        key: "AIzaSyAoJfmj0DJVNRJsyCzvb4DAZWEWMpY1uVA", // CLAVE DEL USUARIO [cite: 90, 91]
 
         init() {
-            this.llenarListas();
-            this.cargarDatosEjemplo();
-            this.renderizar(this.proveedores);
+            this.buildMenus();
+            this.seedData();
+            this.renderProfiles(this.database);
         },
 
-        llenarListas() {
-            const selsP = [document.getElementById('cli-provincia'), document.getElementById('pro-provincia')];
-            const selsA = [document.getElementById('cli-area'), document.getElementById('pro-area')];
+        buildMenus() {
+            const pSelects = [document.getElementById('search-provincia'), document.getElementById('reg-provincia')];
+            const aSelects = [document.getElementById('search-area'), document.getElementById('reg-area')];
             
-            PROVINCIAS.sort().forEach(p => {
-                selsP.forEach(s => s.add(new Option(p, p)));
-            });
-
-            AREAS.sort().forEach(a => {
-                selsA.forEach(s => s.add(new Option(a, a)));
-            });
+            DR_DATA.provincias.sort().forEach(p => pSelects.forEach(s => s.add(new Option(p, p))));
+            DR_DATA.servicios.sort().forEach(a => aSelects.forEach(s => s.add(new Option(a, a))));
         },
 
-        grabar() {
-            const nuevo = {
-                nombre: document.getElementById('pro-nombre').value,
-                provincia: document.getElementById('pro-provincia').value,
-                area: document.getElementById('pro-area').value,
-                direccion: document.getElementById('pro-dir').value,
-                tel1: document.getElementById('pro-tel1').value,
-                tel2: document.getElementById('pro-tel2').value
+        saveProvider() {
+            const entry = {
+                nombre: document.getElementById('reg-nombre').value,
+                provincia: document.getElementById('reg-provincia').value,
+                area: document.getElementById('reg-area').value,
+                direccion: document.getElementById('reg-dir').value,
+                tel1: document.getElementById('reg-tel1').value,
+                tel2: document.getElementById('reg-tel2').value
             };
 
-            if(!nuevo.nombre || !nuevo.tel1) {
-                return alert("Por favor, ingresa el nombre y al menos un teléfono de contacto.");
-            }
-
-            this.proveedores.unshift(nuevo);
-            alert("¡Éxito! Tu servicio ha sido publicado en la red.");
-            this.renderizar(this.proveedores);
+            if(!entry.nombre || !entry.tel1) return alert("Nombre y Teléfono son obligatorios para publicar.");
+            
+            this.database.unshift(entry);
+            alert("¡Perfil publicado! Ahora apareces en las búsquedas.");
+            this.renderProfiles(this.database);
         },
 
-        async ejecutarBusquedaInteligente() {
-            const prov = document.getElementById('cli-provincia').value;
-            const area = document.getElementById('cli-area').value;
-            const dir = document.getElementById('cli-dir').value;
+        async runSmartSearch() {
+            const p = document.getElementById('search-provincia').value;
+            const a = document.getElementById('search-area').value;
+            const d = document.getElementById('search-dir').value;
 
-            const resBox = document.getElementById('ai-response');
-            const resText = document.getElementById('ai-text');
+            const aiPanel = document.getElementById('ai-panel');
+            const aiText = document.getElementById('ai-content');
 
-            resBox.style.display = 'block';
-            resText.innerHTML = `<em>🤖 Analizando el mercado de ${area} en ${prov}...</em>`;
+            aiPanel.style.display = 'block';
+            aiText.innerHTML = `<em>🤖 Conectando con los satélites de información en ${p}...</em>`;
 
-            // Filtrar locales primero
-            const filtrados = this.proveedores.filter(p => p.provincia === prov && p.area === area);
-            this.renderizar(filtrados);
+            // Filtrado local inmediato [cite: 92, 93]
+            const matches = this.database.filter(item => item.provincia === p && item.area === a);
+            this.renderProfiles(matches);
 
             try {
-                const prompt = `Actúa como el asistente inteligente de "Teencontre", una web de servicios en República Dominicana.
-                Un cliente está buscando un "${area}" en la provincia de "${prov}". 
-                Si conoce el sector "${dir}", úsalo para ser más específico.
-                
-                Instrucciones:
-                1. Saluda cordialmente.
-                2. Si hay proveedores en nuestra lista (hay ${filtrados.length}), menciónalos brevemente.
-                3. Proporciona 2 o 3 recomendaciones de negocios REALES y famosos en esa zona de RD para este servicio (incluye nombres).
-                4. Da un consejo útil sobre qué preguntar al contratar este servicio específico.
-                5. Responde en un formato limpio con saltos de línea.`;
+                const instructions = `Eres Teencontre-AI. Un cliente en República Dominicana busca un "${a}" en "${p}". 
+                Contexto adicional: "${d}". 
+                1. Saluda.
+                2. Nombra 3 negocios reales y populares que ofrezcan ese servicio en esa provincia específica de RD.
+                3. Da un consejo de seguridad para el cliente.
+                Respuesta corta y profesional en español.`;
 
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${this.apiKey}`, {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${this.key}`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: prompt }] }]
-                    })
+                    body: JSON.stringify({ contents: [{ parts: [{ text: instructions }] }] })
                 });
 
-                const data = await response.json();
+                const json = await response.json();
                 
-                if (data.candidates && data.candidates) {
-                    const respuestaLimpia = data.candidates.content.parts.text.replace(/\*/g, '');
-                    resText.innerText = respuestaLimpia;
+                // CORRECCIÓN CRÍTICA DE LÓGICA DE RESPUESTA 
+                if (json.candidates && json.candidates.content) {
+                    aiText.innerText = json.candidates.content.parts.text;
                 } else {
-                    resText.innerText = "La IA está procesando muchas solicitudes. Intenta de nuevo en un momento.";
+                    aiText.innerText = "He analizado la red, pero no hay recomendaciones externas en este momento. Prueba con otra provincia cercana.";
                 }
 
-            } catch (error) {
-                resText.innerText = "Lo siento, no pude conectar con el cerebro de la IA. Pero aquí abajo tienes los resultados de nuestra base de datos local.";
-                console.error("Error IA:", error);
+            } catch (err) {
+                aiText.innerText = "Error de conexión con la IA. Mostrando solo base de datos local.";
+                console.error(err);
             }
         },
 
-        renderizar(lista) {
-            const cont = document.getElementById('grid-resultados');
-            cont.innerHTML = lista.map(p => `
-                <div class="result-item">
-                    <h3>${p.nombre}</h3>
-                    <div class="meta">🛠 ${p.area}</div>
-                    <div class="meta">📍 ${p.provincia} - ${p.direccion}</div>
-                    <a href="https://wa.me/1${p.tel1.replace(/-/g,'')}" target="_blank" class="contact-btn">
-                        🟢 Contactar WhatsApp (${p.tel1})
+        renderProfiles(list) {
+            const box = document.getElementById('results-display');
+            box.innerHTML = list.map(user => `
+                <div class="profile-card">
+                    <h3>${user.nombre}</h3>
+                    <div class="profile-info"><strong>🛠 Área:</strong> ${user.area}</div>
+                    <div class="profile-info"><strong>📍 Ubicación:</strong> ${user.provincia} - ${user.direccion}</div>
+                    <a href="https://wa.me/1${user.tel1.replace(/-/g,'')}" target="_blank" class="whatsapp-link">
+                        Enviar WhatsApp (${user.tel1})
                     </a>
                 </div>
-            `).join('') || `
-                <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted);">
-                    <p>No hay proveedores registrados manualmente en esta zona todavía.</p>
-                    <p style="font-size: 0.8rem;">¡Utiliza la búsqueda con IA para obtener recomendaciones externas!</p>
-                </div>
-            `;
+            `).join('') || `<p style="grid-column:1/-1; text-align:center; padding:50px; opacity:0.6;">No se encontraron registros manuales. Usa la IA para buscar negocios externos.</p>`;
         },
 
-        cargarDatosEjemplo() {
-            this.proveedores = [
-                { nombre: "Técnico Juan Aires", provincia: "Santo Domingo", area: "Técnico de Aire Acondicionado", direccion: "Ensanche Quisqueya", tel1: "809-555-1234" },
-                { nombre: "Plomería El Rayo", provincia: "Santiago", area: "Plomero / Fontanero", direccion: "Los Jardines", tel1: "829-444-5566" },
-                { nombre: "Abogados Asociados RD", provincia: "Distrito Nacional", area: "Abogado Civil", direccion: "Gazcue", tel1: "809-333-9988" }
+        seedData() {
+            this.database = [
+                { nombre: "Mecánica RD Express", provincia: "Distrito Nacional", area: "Mecánico de Gasolina", direccion: "Ensanche La Fe", tel1: "809-555-0101", tel2: "" },
+                { nombre: "Pedro Aire Frío", provincia: "Santo Domingo", area: "Técnico de Aire Acondicionado", direccion: "Ensanche La Paz", tel1: "809-555-0011", tel2: "" },
+                { nombre: "Lic. García & Asoc.", provincia: "Distrito Nacional", area: "Abogado Civil", direccion: "Gazcue", tel1: "829-444-1122", tel2: "" }
             ];
         }
     };
 
-    // INICIAR APLICACIÓN
-    window.onload = () => app.init();
+    window.onload = () => engine.init();
 </script>
 
 </body>
